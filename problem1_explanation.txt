@@ -1,3 +1,6 @@
 -- Problem 1: Explanation (2-5 sentences) of your optimizations goes here.
 
 
+1. Selection Pushdown: I moved the selection conditions (location, salary, budget) directly onto the base tables (Department, Employee, Project). This filters tuples as early as possible, reducing the size of intermediate relations significantly before any joins occur.
+2. Projection Pushdown: I applied projections immediately after the selections to remove unused columns, which reduces the width of tuples and saves memory.
+3. Join Reordering: I joined Department and Project first, as both have restrictive filters ('LA' and budget range), likely resulting in a small intermediate result set. This small set is then joined with Assignment, and finally with the filtered Employee relation.

@@ -1,3 +1,10 @@
 -- Problem 1: Initial (naïve) logical plan in relational algebra goes here.
 
 
+pi_{d.dname, e.name, p.pid} (
+    sigma_{d.location = 'LA' AND e.salary > 80000 AND p.budget >= 100000 AND p.budget <= 300000} (
+        ( (Department bowtie_{d.deptid = p.deptid} Project) 
+           bowtie_{p.pid = a.pid} Assignment ) 
+           bowtie_{e.empid = a.empid} Employee
+    )
+)
