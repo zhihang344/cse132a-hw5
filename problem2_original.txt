@@ -1,3 +1,13 @@
 -- Problem 2: Initial (naïve) logical plan in relational algebra goes here.
 
 
+pi_{sname} (
+	sigma_{major = 'CS'} (
+		Student 
+		bowtie_{Student.sid = Enrollment.sid} (
+			sigma_{dept = 'CS'} (
+				Enrollment bowtie_{Enrollment.cid = Course.cid} Course
+			)
+		)
+	)
+)

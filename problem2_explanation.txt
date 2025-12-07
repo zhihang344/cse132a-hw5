@@ -1,3 +1,6 @@
 -- Problem 2: Explanation (2-5 sentences) of your optimizations goes here.
 
 
+1. Subquery Unnesting (Semi-Join): The SQL 'EXISTS' clause was converted into a semi-join operation. This is more efficient than a standard join because we stop scanning the right side (Enrollment/Course) as soon as the first match for a Student is found, and it prevents duplicate Student rows from being generated.
+2. Predicate Pushdown: The selection dept = 'CS' was pushed down to the Course table, and major = 'CS' was pushed to the Student table to reduce input sizes immediately.
+3. Projection Minimization: We only project sid from the inner join (Enrollment/Course) because that is the only attribute needed to validate the existence check against the Student table.

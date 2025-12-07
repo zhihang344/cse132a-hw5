@@ -1,3 +1,13 @@
 -- Problem 2: Optimized logical plan in relational algebra goes here.
 
 
+pi_{sname} (
+	pi_{sid, sname} (sigma_{major = 'CS'} （Student）)
+	semi-join_{sid} (
+		pi_{sid} (
+			pi_{sid, cid} (Enrollment)
+			bowtie_{cid}
+			pi_{cid} (sigma_{dept = 'CS'} (Course))
+		)
+	)
+)
