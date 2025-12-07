@@ -1,3 +1,10 @@
 -- Problem 3: Initial (naïve) logical plan in relational algebra goes here.
 
 
+pi_{c.cname, p.pname} (
+    sigma_{c.region = 'West' AND p.category LIKE 'Electronics%' AND o.amount > 200} (
+        ( (Customer bowtie_{c.cid = o.cid} Orders)
+           bowtie_{o.oid = oi.oid} OrderItem )
+           bowtie_{oi.pid = p.pid} Product
+    )
+)

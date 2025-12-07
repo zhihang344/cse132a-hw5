@@ -1,3 +1,6 @@
 -- Problem 3: Explanation (2-5 sentences) of your optimizations goes here.
 
 
+1. Selection Pushdown: All WHERE clause conditions were pushed to their respective base tables. Filtering Customers by 'West' and Orders by 'amount > 200' creates smaller datasets before the join logic begins.
+2. Join Reordering: I joined Customer and Orders first. Assuming 'West' and '> 200' are selective, this creates a small set of valid orders. This small set is then joined with OrderItem, and finally with the filtered Product table. This prevents joining the massive OrderItem table against the full Product catalog early on.
+3. Projection Pushdown: Unnecessary columns are removed at the leaf nodes, minimizing the data passed up the tree.
